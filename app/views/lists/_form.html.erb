@@ -1,0 +1,9 @@
+<%= simple_form_for @list, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :title %>
+  <%= f.input :done %>
+  <%= f.input :public %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), lists_path, :class => 'btn' %>
+  </div>
+<% end %>
