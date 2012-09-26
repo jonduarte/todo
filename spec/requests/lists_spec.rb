@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "Lists" do
-  scenario "Creating a list of tasks", :js => true do
+  scenario "Managing a list of tasks", :js => true do
     visit lists_path
     click_link "New"
     fill_in "Title", :with => "Build an app"
@@ -12,5 +12,9 @@ feature "Lists" do
     fill_in "Title", :with => "write features"
     click_button "Create Task"
     page.should have_content("write features")
+
+    find("#tasks").click_link "Delete"
+    page.driver.browser.switch_to.alert.accept
+    page.should_not have_content("write features")
   end
 end

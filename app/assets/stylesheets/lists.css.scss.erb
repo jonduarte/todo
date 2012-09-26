@@ -1,0 +1,22 @@
+// Place all the styles related to the lists controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#tasks {
+  li {
+    list-style-type: none;
+    .trash {
+      width: 16px;
+      height: 16px;
+      overflow: hidden;
+      text-indent: -9000px;
+      background: url(<%= asset_path("trash.png") %>) no-repeat;
+      float: left;
+    }
+  }
+  form {
+    label {
+      float:left;
+    }
+
+  }
+}

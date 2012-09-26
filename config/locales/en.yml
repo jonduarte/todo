@@ -8,3 +8,5 @@ en:
     links:
       confirm: "Are you sure?"
       destroy: "Delete"
+      back: "Back"
+      edit: "Edit"
