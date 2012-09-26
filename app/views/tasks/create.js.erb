@@ -1,0 +1,4 @@
+$("#tasks").append("<%= escape_javascript(render(@task)) %>")
+$("#<%= dom_id @task %>").effect("highlight");
+$("#new_task")[0].reset();
+$("#new_task input[type=text]").focus();

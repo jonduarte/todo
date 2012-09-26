@@ -1,11 +1,16 @@
 require 'spec_helper'
 
-describe "Lists" do
-  describe "GET /lists" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get lists_path
-      response.status.should be(200)
-    end
+feature "Lists" do
+  scenario "Creating a list of tasks", :js => true do
+    visit lists_path
+    click_link "New"
+    fill_in "Title", :with => "Build an app"
+    click_button "Create List"
+    page.should have_content("Title: Build an app")
+    page.should have_content("Tasks")
+
+    fill_in "Title", :with => "write features"
+    click_button "Create Task"
+    page.should have_content("write features")
   end
 end

@@ -1,0 +1,7 @@
+<li id="<%= dom_id task %>">
+  <% if task.done %>
+    <span class='label label-info'><%= t("done") %></span>
+  <% end %>
+  <%= task.title %>
+  <%= link_to t("helpers.links.destroy"), list_task_path(@list, task), :method => 'delete', :data => { :confirm => t("helpers.links.confirm") }, :class => 'btn btn-danger btn-mini' %>
+</li>
