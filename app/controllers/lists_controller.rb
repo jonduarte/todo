@@ -6,7 +6,8 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    respond_with @list
+    @task = Task.new
+    respond_with @list, @task
   end
 
   def new

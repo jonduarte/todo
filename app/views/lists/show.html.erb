@@ -23,3 +23,40 @@
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
 </div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @list.tasks.each do |task| %>
+      <tr>
+        <td>Nome da task:</td>
+        <td><%= task.title %></td>
+        <td><%= task.done %></td>
+        <td> <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              list_task_path(@list, task),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+          </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="page-header">
+  <%= simple_form_for [@list, @task], :html => { :class => 'form-horizontal' } do |f| %>
+    <%= f.input :title %>
+    <%= f.input :done %>
+    <div class="form-actions">
+      <%= f.button :submit, :class => 'btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")), lists_path, :class => 'btn' %>
+    </div>
+  <% end %>
+</div>
