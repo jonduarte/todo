@@ -1,8 +1,7 @@
 <li id="<%= dom_id task %>">
-  <% if task.done %>
-    <span class='label label-info'><%= t("done") %></span>
+  <%= simple_form_for [@list, task], :remote => true do |f| %>
+    <%= f.input :done, :label => task.title, :input_html => { :id => "done_#{dom_id task}", :title => "Check for complete" } %>
   <% end %>
-  <%= task.title %>
   <%= link_to t("helpers.links.destroy"),
     list_task_path(@list, task),
     :method => 'delete',

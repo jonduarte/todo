@@ -4,6 +4,7 @@
 #tasks {
   li {
     list-style-type: none;
+    position:relative;
     .trash {
       width: 16px;
       height: 16px;
@@ -11,12 +12,16 @@
       text-indent: -9000px;
       background: url(<%= asset_path("trash.png") %>) no-repeat;
       float: left;
+      position: absolute;
+      left: -40px;
+      top: 1px;
     }
   }
   form {
-    label {
-      float:left;
+    label.checkbox {
+      position: absolute;
+      top: -0;
+      left: -18px;
     }
-
   }
 }

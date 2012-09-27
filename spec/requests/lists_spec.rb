@@ -16,5 +16,20 @@ feature "Lists" do
     find("#tasks").click_link "Delete"
     page.driver.browser.switch_to.alert.accept
     page.should_not have_content("write features")
+
+    fill_in "Title", :with => "code a lot"
+    find("#new_task").check "task[done]"
+    click_button "Create Task"
+    page.should have_content("code a lot")
+
+    find('input[title="Check for complete"]').checked?.should be_true
+
+    find('input[title="Check for complete"]').should be_checked
+    find('input[title="Check for complete"]').set(false)
+    find('input[title="Check for complete"]').checked?.should be_false
+
+    visit lists_path
+    click_link "Build an app"
+    find('input[title="Check for complete"]').checked?.should be_false
   end
 end

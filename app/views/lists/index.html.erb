@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:done) %></th>
       <th><%= model_class.human_attribute_name(:public) %></th>
@@ -15,8 +14,7 @@
   <tbody>
     <% @lists.each do |list| %>
       <tr>
-        <td><%= link_to list.id, list_path(list) %></td>
-        <td><%= list.title %></td>
+        <td><%= link_to list.title, list_path(list) %></td>
         <td><%= list.done %></td>
         <td><%= list.public %></td>
         <td>

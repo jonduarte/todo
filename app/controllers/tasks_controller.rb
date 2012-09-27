@@ -26,9 +26,10 @@ class TasksController < ApplicationController
   end
 
   def update
+    @list = List.find(params[:list_id])
     @task = Task.find(params[:id])
-    @task.update_attributes(params[:task])
-    respond_with(@task)
+    @task.toggle! :done
+    respond_with(@task, :location => @list)
   end
 
   def destroy
