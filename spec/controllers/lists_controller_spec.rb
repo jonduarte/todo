@@ -9,7 +9,7 @@ describe ListsController do
 
   describe "GET index" do
     it "assigns all lists as @lists" do
-      list = List.create! valid_attributes
+      list = subject.current_user.lists.create! valid_attributes
       get :index, {}
       assigns(:lists).should eq([list])
     end

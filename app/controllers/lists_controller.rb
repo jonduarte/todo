@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
   def index
-    @lists = List.all
+    @lists = current_user.lists
     respond_with @lists
   end
 
@@ -21,7 +21,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.create(params[:list])
+    @list = current_user.lists.create(params[:list])
     respond_with @list, :location => @list
   end
 
