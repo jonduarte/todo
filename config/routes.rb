@@ -1,8 +1,10 @@
 Todo::Application.routes.draw do
+  root :to => 'lists#index'
 
   resources :lists do
     resources :tasks
   end
+
 
   devise_for :users
 
