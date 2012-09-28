@@ -20,7 +20,5 @@ describe "lists/index" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "tr>td", :text => "My List".to_s, :count => 2
-    assert_select "tr>td", :text => false.to_s, :count => 3
-    assert_select "tr>td", :text => true.to_s, :count => 1
   end
 end

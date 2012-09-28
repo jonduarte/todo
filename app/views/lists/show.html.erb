@@ -1,21 +1,17 @@
-<%- model_class = List -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
-</div>
-
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @list.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:done) %>:</strong></dt>
-  <dd><%= @list.done %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:public) %>:</strong></dt>
-  <dd><%= @list.public %></dd>
-</dl>
-
-<div class="form-actions">
-  <%= link_to t("helpers.links.back"), lists_path, :class => 'btn'  %>
-  <%= link_to t("helpers.links.edit"), edit_list_path(@list), :class => 'btn' %>
-  <%= link_to t("helpers.links.destroy"), list_path(@list), :method => 'delete', :data => { :confirm => t("helpers.links.confirm") }, :class => 'btn btn-danger' %>
+<div class="well">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>title</th>
+        <th>completed</th>
+        <th>public</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render :partial => "detail", :locals => { :list => @list } %>
+    </tbody>
+  </table>
 </div>
 
 <div class="span4">

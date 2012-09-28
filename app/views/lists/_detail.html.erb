@@ -1,0 +1,16 @@
+<tr id="<%= dom_id list %>">
+  <td>
+    <strong><%= link_to list.title, list_path(list) %></strong>
+  </td>
+  <td>
+    <i class="complete icon <%= "icon-ok" if list.done? %>" title="List completed" rel="tooltip"></i>
+  </td>
+  <td>
+    <i class="icon icon-eye-<%= list.public? ? 'open' : 'close' %>" title="This lists is public" rel="tooltip"></i>
+  </td>
+  <td>
+    <%= link_to t("helpers.links.back"), lists_path, :class => 'btn btn-mini'  %>
+    <%= link_to t("helpers.links.edit"), edit_list_path(list), :class => 'btn btn-mini' %>
+    <%= link_to t("helpers.links.destroy"), list_path(list), :method => 'delete', :data => { :confirm => t("helpers.links.confirm") }, :class => 'btn btn-danger btn-mini' %>
+  </td>
+</tr>

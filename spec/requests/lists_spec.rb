@@ -12,7 +12,7 @@ feature "Lists" do
     click_link "New"
     fill_in "Title", :with => "Build an app"
     click_button "Create List"
-    page.should have_content("Title: Build an app")
+    page.should have_content("Build an app")
     page.should have_content("Tasks")
 
     fill_in "Title", :with => "write features"

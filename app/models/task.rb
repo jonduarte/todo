@@ -13,5 +13,6 @@ class Task < ActiveRecord::Base
     elsif !self.list.completed? && self.list.done?
       self.list.done = false
     end
+    self.list.save
   end
 end

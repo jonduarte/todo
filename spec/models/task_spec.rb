@@ -20,7 +20,7 @@ describe Task do
       list.done?.should be_true
       task.done?.should be_true
       task.toggle! :done
-      list.done?.should be_false
+      list.reload.done?.should be_false
     end
   end
 end
