@@ -5,6 +5,6 @@
   <%= link_to t("helpers.links.destroy"),
     list_task_path(@list, task),
     :method => 'delete',
-    :data => { :confirm => t("helpers.links.confirm"), :remote => true },
-    :class => 'trash' %>
+    :data   => { :remote => true },
+    :class  => 'trash' %>
 </li>

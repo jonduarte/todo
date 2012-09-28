@@ -1,13 +1,8 @@
-<%= simple_form_for(@task) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :done %>
-    <%= f.association :list %>
-  </div>
-
+<%= simple_form_for [list, task], :remote => true, :html => { :class => 'form-vertical', :id => "new_task" } do |f| %>
+  <%= f.input :title %>
+  <%= f.input :done %>
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), lists_path, :class => 'btn' %>
   </div>
 <% end %>

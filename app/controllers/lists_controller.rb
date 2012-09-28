@@ -39,6 +39,6 @@ class ListsController < ApplicationController
   def destroy
     @list = List.find(params[:id])
     @list.destroy
-    respond_with nil, :location => lists_path
+    respond_with @list, :location => lists_path
   end
 end

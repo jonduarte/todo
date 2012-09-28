@@ -23,13 +23,16 @@ feature "Lists" do
       click_link "Delete"
     end
 
-    page.driver.browser.switch_to.alert.accept
     page.should_not have_content("write features")
 
     fill_in "Title", :with => "code a lot"
     find("#new_task").check "task[done]"
     click_button "Create Task"
     page.should have_content("code a lot")
+
+    fill_in "Title", :with => ""
+    click_button "Create Task"
+    page.should have_content("can't be blank")
 
     find('input[title="Check for complete"]').checked?.should be_true
 

@@ -1,4 +1,9 @@
-$("#tasks").append("<%= escape_javascript(render(@task)) %>")
-$("#<%= dom_id @task %> label").effect("highlight");
-$("#new_task")[0].reset();
-$("#new_task input[type=text]").focus();
+<% if @task.valid? %>
+  $("#tasks").append("<%= escape_javascript(render(@task)) %>")
+  $("#<%= dom_id @task %> label").effect("highlight");
+  $("#new_task")[0].reset();
+  $("#new_task input[type=text]").focus();
+<% else %>
+  $("#task_form").html("<%= escape_javascript(render :partial => "/tasks/form", :locals => { :list => @list, :task => @task }) %>")
+  $("#new_task input[type=text]").focus();
+<% end %>

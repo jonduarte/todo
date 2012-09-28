@@ -18,20 +18,18 @@
   <%= link_to t("helpers.links.destroy"), list_path(@list), :method => 'delete', :data => { :confirm => t("helpers.links.confirm") }, :class => 'btn btn-danger' %>
 </div>
 
-<h2>Tasks</h2>
-<div class="well">
-  <ul id="tasks">
-    <%= render @list.tasks %>
-  </ul>
+<div class="span4">
+  <h2>Tasks</h2>
+  <div class="well">
+    <ul id="tasks">
+      <%= render @list.tasks %>
+    </ul>
+  </div>
 </div>
 
-<div class="page-header">
-  <%= simple_form_for [@list, @task], :remote => true, :html => { :class => 'form-horizontal', :id => "new_task" } do |f| %>
-    <%= f.input :title %>
-    <%= f.input :done %>
-    <div class="form-actions">
-      <%= f.button :submit, :class => 'btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")), lists_path, :class => 'btn' %>
-    </div>
-  <% end %>
+<div class="span3">
+  <h2>New Task</h2>
+  <div id="task_form">
+    <%= render :partial => "/tasks/form", :locals => { :list => @list, :task => @task }%>
+  </div>
 </div>
