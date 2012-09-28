@@ -15,6 +15,16 @@ describe ListsController do
     end
   end
 
+  describe "GET public" do
+    it "show available lists" do
+      visitor = User.create! :email => "visi@tor.com", :password => "123456"
+      list = visitor.lists.create! valid_attributes.merge(:public => true)
+
+      get :public, {}
+      assigns(:lists).should eq([list])
+    end
+  end
+
   describe "GET show" do
     it "assigns the requested list as @list" do
       list = List.create! valid_attributes

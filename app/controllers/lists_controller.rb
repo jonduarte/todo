@@ -4,6 +4,11 @@ class ListsController < ApplicationController
     respond_with @lists
   end
 
+  def public
+    @lists = List.public_for current_user
+    respond_with @lists
+  end
+
   def show
     @list = List.find(params[:id])
     @task = Task.new

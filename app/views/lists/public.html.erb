@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h1>Public Lists</h1>
+</div>
+
+<% @lists.each do |list| %>
+  <div class="well">
+    <%= link_to content_tag("i", "", :class => "icon icon-star"), "#", :class => "btn btn-mini btn-info", :title => "Add to your favorite list", :rel => "tooltip" %>
+    <strong class="<%= "mark-as-done" if list.done %>"><%= list.title %></strong>
+    <ul>
+      <% list.tasks.each do |task| %>
+        <li class="<%= "mark-as-done" if task.done %>"><%= task.title %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
