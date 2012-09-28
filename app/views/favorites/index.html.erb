@@ -1,0 +1,10 @@
+<div class="page-header">
+  <h1>Favorites</h1>
+</div>
+
+<% @lists.each do |list| %>
+  <div class="well" id="<%= dom_id list %>">
+    <%= render list %>
+    <%= button_to "undo favorite", favorite_path(list.id), :method => :delete, :remote => true, :class => "btn btn-mini btn-danger" %>
+  </div>
+<% end %>

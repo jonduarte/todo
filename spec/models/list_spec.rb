@@ -22,5 +22,15 @@ describe List do
       lists.should have(1).list
       lists.first.should == public_list
     end
+
+    it "not show lists when its already marked as favorite" do
+      current_user = FactoryGirl.create(:user)
+      visitor      = FactoryGirl.create(:user)
+
+      public_list  = FactoryGirl.create(:list, :public => true, :user => visitor)
+      List.public_for(current_user).should have(1).list
+      current_user.favorites << public_list
+      List.public_for(current_user).should be_empty
+    end
   end
 end

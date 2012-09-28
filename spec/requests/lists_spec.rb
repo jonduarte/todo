@@ -41,4 +41,21 @@ feature "Lists" do
     click_link "Build an app"
     find('input[title="Check for complete"]').checked?.should be_false
   end
+
+  scenario "Add a public list to favorite", :js => true do
+    visit_user = FactoryGirl.create(:user)
+    logged_user = FactoryGirl.create(:user)
+    FactoryGirl.create(:list, :public => true, :title => "Mark me as favorite", :user => visit_user)
+    visit root_path
+    fill_in "Email", :with => logged_user.email
+    fill_in "Password", :with => logged_user.password
+    click_button "Sign in"
+    page.should have_content("Public lists")
+    click_link "Public lists"
+    page.should have_content("Mark me as favorite")
+    click_button "favorite"
+    page.should_not have_content("Mark me as favorite")
+    visit favorites_path
+    page.should have_content("Mark me as favorite")
+  end
 end

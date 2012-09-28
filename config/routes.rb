@@ -1,13 +1,14 @@
 Todo::Application.routes.draw do
   root :to => 'lists#index'
 
+  resources :favorites, :only => [:index, :update, :destroy]
+
   resources :lists do
     collection do
       get :public
     end
     resources :tasks
   end
-
 
   devise_for :users
 
