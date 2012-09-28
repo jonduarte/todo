@@ -1,31 +1,33 @@
-<div class="well">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>title</th>
-        <th>completed</th>
-        <th>public</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render :partial => "detail", :locals => { :list => @list } %>
-    </tbody>
-  </table>
+<div class="row-fluid">
+  <div class="well">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>title</th>
+          <th>completed</th>
+          <th>public</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render :partial => "detail", :locals => { :list => @list } %>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-<div class="span4">
-  <h2>Tasks</h2>
-  <div class="well">
+<div class="row-fluid">
+  <div class="span8 well">
+    <h2>Tasks</h2>
     <ul id="tasks">
       <%= render @list.tasks %>
     </ul>
   </div>
-</div>
 
-<div class="span3">
-  <h2>New Task</h2>
-  <div id="task_form">
-    <%= render :partial => "/tasks/form", :locals => { :list => @list, :task => @task }%>
+  <div class="span4 well">
+    <h2>New Task</h2>
+    <div id="task_form">
+      <%= render :partial => "/tasks/form", :locals => { :list => @list, :task => @task }%>
+    </div>
   </div>
 </div>
