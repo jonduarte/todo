@@ -17,7 +17,7 @@ describe ListsController do
 
   describe "GET public" do
     it "show available lists" do
-      visitor = User.create! :email => "visi@tor.com", :password => "123456"
+      visitor = FactoryGirl.create(:user)
       list = visitor.lists.create! valid_attributes.merge(:public => true)
 
       get :public, {}
@@ -27,7 +27,7 @@ describe ListsController do
 
   describe "GET show" do
     it "assigns the requested list as @list" do
-      list = List.create! valid_attributes
+      list = FactoryGirl.create(:list, valid_attributes)
       get :show, {:id => list.to_param}
       assigns(:list).should eq(list)
     end
@@ -42,7 +42,7 @@ describe ListsController do
 
   describe "GET edit" do
     it "assigns the requested list as @list" do
-      list = List.create! valid_attributes
+      list = FactoryGirl.create(:list, valid_attributes)
       get :edit, {:id => list.to_param}
       assigns(:list).should eq(list)
     end
@@ -85,55 +85,56 @@ describe ListsController do
   end
 
   describe "PUT update" do
+    before do
+      @list = FactoryGirl.create(:list, valid_attributes)
+    end
+
     describe "with valid params" do
       it "updates the requested list" do
-        list = List.create! valid_attributes
         List.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => list.to_param, :list => {'these' => 'params'}}
+        put :update, {:id => @list.to_param, :list => {'these' => 'params'}}
       end
 
       it "assigns the requested list as @list" do
-        list = List.create! valid_attributes
-        put :update, {:id => list.to_param, :list => valid_attributes}
-        assigns(:list).should eq(list)
+        put :update, {:id => @list.to_param, :list => valid_attributes}
+        assigns(:list).should eq(@list)
       end
 
       it "redirects to the list" do
-        list = List.create! valid_attributes
-        put :update, {:id => list.to_param, :list => valid_attributes}
-        response.should redirect_to(list)
+        put :update, {:id => @list.to_param, :list => valid_attributes}
+        response.should redirect_to(@list)
       end
     end
 
     describe "with invalid params" do
       it "assigns the list as @list" do
-        list = List.create! valid_attributes
         List.any_instance.stub(:save).and_return(false)
-        put :update, {:id => list.to_param, :list => {}}
-        assigns(:list).should eq(list)
+        put :update, {:id => @list.to_param, :list => {}}
+        assigns(:list).should eq(@list)
       end
 
       it "re-renders the 'edit' template" do
-        list = List.create! valid_attributes
         List.any_instance.stub(:save).and_return(false)
         List.any_instance.stub(:errors).and_return(["can't be blank"])
-        put :update, {:id => list.to_param, :list => {}}
+        put :update, {:id => @list.to_param, :list => {}}
         response.should render_template("edit")
       end
     end
   end
 
   describe "DELETE destroy" do
+    before do
+      @list = FactoryGirl.create(:list, valid_attributes)
+    end
+
     it "destroys the requested list" do
-      list = List.create! valid_attributes
       expect {
-        delete :destroy, {:id => list.to_param}
+        delete :destroy, {:id => @list.to_param}
       }.to change(List, :count).by(-1)
     end
 
     it "redirects to the lists list" do
-      list = List.create! valid_attributes
-      delete :destroy, {:id => list.to_param}
+      delete :destroy, {:id => @list.to_param}
       response.should redirect_to(lists_url)
     end
   end

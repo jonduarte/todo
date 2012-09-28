@@ -9,7 +9,7 @@ describe TasksController do
 
   describe "POST create" do
     before do
-      @list = List.create! :title => "My List"
+      @list = FactoryGirl.create(:list)
     end
 
     describe "with valid params" do
@@ -33,14 +33,12 @@ describe TasksController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved task as @task" do
-        # Trigger the behavior that occurs when invalid params are submitted
         Task.any_instance.stub(:save).and_return(false)
         post :create, { :list_id => @list.id, :task => {}}
         assigns(:task).should be_a_new(Task)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
         Task.any_instance.stub(:save).and_return(false)
         Task.any_instance.stub(:errors).and_return(["can't be blank"])
         post :create, { :list_id => @list.id, :task => {}}
@@ -51,19 +49,18 @@ describe TasksController do
 
   describe "DELETE destroy" do
     before do
-      @list = List.create! :title => "My List"
+      @list = FactoryGirl.create(:list)
+      @task = FactoryGirl.create(:task)
     end
 
     it "destroys the requested task" do
-      task = Task.create! valid_attributes
       expect {
-        delete :destroy, { :list_id => @list.id, :id => task.to_param}
+        delete :destroy, { :list_id => @list.id, :id => @task.to_param}
       }.to change(Task, :count).by(-1)
     end
 
     it "redirects to the tasks list" do
-      task = Task.create! valid_attributes
-      delete :destroy, { :list_id => @list.id, :id => task.to_param}
+      delete :destroy, { :list_id => @list.id, :id => @task.to_param}
       response.should redirect_to(@list)
     end
   end

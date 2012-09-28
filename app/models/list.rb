@@ -7,4 +7,8 @@ class List < ActiveRecord::Base
   scope :public_for, lambda { |user| where("public = ? and user_id <> ?", true, user.id) }
 
   validates :title, :presence => true
+
+  def completed?
+    tasks.map(&:done).all?
+  end
 end
