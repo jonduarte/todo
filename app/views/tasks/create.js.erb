@@ -7,3 +7,4 @@
   $("#task_form").html("<%= escape_javascript(render :partial => "/tasks/form", :locals => { :list => @list, :task => @task }) %>")
   $("#new_task input[type=text]").focus();
 <% end %>
+$("#<%= dom_id @list %>").replaceWith("<%= escape_javascript(render :partial => "/lists/detail", :locals => { :list => @list }) %>")

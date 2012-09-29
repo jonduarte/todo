@@ -4,7 +4,7 @@ describe List do
   it "complete list if all tasks are done" do
     list = FactoryGirl.create(:list)
     task = FactoryGirl.create(:task, :list => list, :done => true)
-    list.completed?.should be_true
+    list.done?.should be_true
   end
 
   context "When selecting public lists" do
