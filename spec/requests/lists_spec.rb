@@ -34,6 +34,10 @@ feature "Lists" do
     click_button "Create Task"
     page.should have_content("can't be blank")
 
+    fill_in "Title", :with => "build tests"
+    click_button "Create Task"
+    page.should_not have_content("can't be blank")
+
     find('input[title="Check for complete"]').checked?.should be_true
 
     find('input[title="Check for complete"]').should be_checked
