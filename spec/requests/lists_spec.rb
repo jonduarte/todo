@@ -64,5 +64,9 @@ feature "Lists" do
     page.should_not have_content("Mark me as favorite")
     visit favorites_path
     page.should have_content("Mark me as favorite")
+    click_button "undo favorite"
+    page.should_not have_content("Mark me as favorite")
+    click_link "Public lists"
+    page.should have_content("Mark me as favorite")
   end
 end

@@ -9,7 +9,7 @@ describe TasksController do
 
   describe "POST create" do
     before do
-      @list = FactoryGirl.create(:list)
+      @list = list_for_current_user
     end
 
     describe "with valid params" do
@@ -42,8 +42,8 @@ describe TasksController do
 
   describe "DELETE destroy" do
     before do
-      @list = FactoryGirl.create(:list)
-      @task = FactoryGirl.create(:task)
+      @list = list_for_current_user
+      @task = FactoryGirl.create(:task, :list => @list)
     end
 
     it "destroys the requested task" do

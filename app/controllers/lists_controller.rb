@@ -10,7 +10,7 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find(params[:id])
+    @list = current_user.lists.find(params[:id])
     @task = Task.new
     respond_with @list, @task
   end
@@ -21,7 +21,7 @@ class ListsController < ApplicationController
   end
 
   def edit
-    @list = List.find(params[:id])
+    @list = current_user.lists.find(params[:id])
     respond_with @list
   end
 
@@ -31,13 +31,13 @@ class ListsController < ApplicationController
   end
 
   def update
-    @list = List.find(params[:id])
+    @list = current_user.lists.find(params[:id])
     @list.update_attributes(params[:list])
     respond_with @list, :location => @list
   end
 
   def destroy
-    @list = List.find(params[:id])
+    @list = current_user.lists.find(params[:id])
     @list.destroy
     respond_with @list, :location => lists_path
   end

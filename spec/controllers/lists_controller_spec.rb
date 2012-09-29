@@ -27,7 +27,7 @@ describe ListsController do
 
   describe "GET show" do
     it "assigns the requested list as @list" do
-      list = FactoryGirl.create(:list, valid_attributes)
+      list = subject.current_user.lists.create! valid_attributes
       get :show, {:id => list.to_param}
       assigns(:list).should eq(list)
     end
@@ -42,7 +42,7 @@ describe ListsController do
 
   describe "GET edit" do
     it "assigns the requested list as @list" do
-      list = FactoryGirl.create(:list, valid_attributes)
+      list = list_for_current_user
       get :edit, {:id => list.to_param}
       assigns(:list).should eq(list)
     end
@@ -86,7 +86,7 @@ describe ListsController do
 
   describe "PUT update" do
     before do
-      @list = FactoryGirl.create(:list, valid_attributes)
+      @list = list_for_current_user
     end
 
     describe "with valid params" do
@@ -124,7 +124,7 @@ describe ListsController do
 
   describe "DELETE destroy" do
     before do
-      @list = FactoryGirl.create(:list, valid_attributes)
+      @list = list_for_current_user
     end
 
     it "destroys the requested list" do
