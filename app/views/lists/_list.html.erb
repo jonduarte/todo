@@ -1,6 +1,6 @@
-<strong class="<%= "mark-as-done" if list.done %>"><%= list.title %></strong>
+<strong class="<%= "mark-as-done" if list.done? %>"><%= list.title %></strong>
 <ul>
   <% list.tasks.each do |task| %>
-    <li class="<%= "mark-as-done" if task.done %>"><%= task.title %></li>
+    <li class="<%= "mark-as-done" if task.done? %>"><%= task.title %></li>
   <% end %>
 </ul>

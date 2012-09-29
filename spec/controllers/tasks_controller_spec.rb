@@ -37,13 +37,6 @@ describe TasksController do
         post :create, { :list_id => @list.id, :task => {}}
         assigns(:task).should be_a_new(Task)
       end
-
-      it "re-renders the 'new' template" do
-        Task.any_instance.stub(:save).and_return(false)
-        Task.any_instance.stub(:errors).and_return(["can't be blank"])
-        post :create, { :list_id => @list.id, :task => {}}
-        response.should render_template("new")
-      end
     end
   end
 

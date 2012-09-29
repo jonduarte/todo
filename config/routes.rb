@@ -7,7 +7,7 @@ Todo::Application.routes.draw do
     collection do
       get :public
     end
-    resources :tasks
+    resources :tasks, :only => [:create, :update, :destroy]
   end
 
   devise_for :users
